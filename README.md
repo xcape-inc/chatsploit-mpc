@@ -22,13 +22,14 @@ A Model Context Protocol (MCP) server for interacting with the Metasploit Framew
 - Python 3.12 or higher
 - Metasploit Framework with MSFRPC enabled
 - MCP client library
+- uv (Python package installer)
 
 ## Installation
 
 1. Clone this repository
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   uv pip install -r requirements.txt
    ```
 
 ## Configuration
@@ -36,10 +37,11 @@ A Model Context Protocol (MCP) server for interacting with the Metasploit Framew
 Create a `.env` file with the following settings:
 
 ```env
-MSF_PASSWORD=your_password
-MSF_HOST=127.0.0.1
-MSF_PORT=55553
-MSF_SSL=false
+MSF_RPC_USERNAME=your_username
+MSF_RPC_PASSWORD=your_password
+MSF_RPC_HOST=127.0.0.1
+MSF_RPC_PORT=55553
+MSF_RPC_SSL=false
 ```
 
 ## Usage
@@ -49,9 +51,9 @@ MSF_SSL=false
    msfrpcd -P your_password -S -a 127.0.0.1
    ```
 
-2. Run the MCP server:
+2. Run the MCP server (this is also how your MCP client can run this server):
    ```bash
-   python mcp_server.py
+   uv --directory <path you cloned to> run python main.py --role viewer
    ```
 
 ## Available Tools
